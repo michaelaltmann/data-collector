@@ -1,25 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import Observation from './Observation'
+import Study from './Study'
+import React, { Component } from 'react'
+import { Route, Switch } from 'react-router'
+import { BrowserRouter as Router } from 'react-router-dom'
+import aws_exports from './aws-exports';
+import Auth from 'aws-amplify';
+import NavBar from './NavBar'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+Auth.configure(aws_exports);
+
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Router >
+          <div>
+            <NavBar />
+            <Switch>
+              <Route path="/study" component={Study} />
+              <Route path="/observation" component={Observation} />
+            </Switch>
+          </div>
+        </Router>
+      </div>
+    )
+  }
 }
 
 export default App;
+
