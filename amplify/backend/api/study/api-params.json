@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/items",
+            "lambdaFunction": "study",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/items"
+        }
+    ],
+    "resourceName": "study",
+    "apiName": "study",
+    "functionArns": [
+        {
+            "lambdaFunction": "study"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-datacollector-cfa-142110-authRole",
+        "unAuthRoleName": "amplify-datacollector-cfa-142110-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "study",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

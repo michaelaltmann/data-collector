@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/items",
+            "lambdaFunction": "observation",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/items"
+        }
+    ],
+    "resourceName": "observation",
+    "apiName": "observation",
+    "functionArns": [
+        {
+            "lambdaFunction": "observation"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-datacollector-cfa-142110-authRole",
+        "unAuthRoleName": "amplify-datacollector-cfa-142110-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "observation",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
