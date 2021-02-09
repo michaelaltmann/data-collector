@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import aws_exports from './aws-exports';
 import Auth from 'aws-amplify';
 import NavBar from './NavBar'
+import { withAuthenticator } from '@aws-amplify/ui-react';
 
 Auth.configure(aws_exports);
 
@@ -28,5 +29,4 @@ class App extends Component {
   }
 }
 
-export default App;
-
+export default withAuthenticator(App);
