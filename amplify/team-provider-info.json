@@ -1,0 +1,20 @@
+{
+  "cfa": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-datacollector-cfa-142110-authRole",
+      "UnauthRoleArn": "arn:aws:iam::216407560218:role/amplify-datacollector-cfa-142110-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::216407560218:role/amplify-datacollector-cfa-142110-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-datacollector-cfa-142110-deployment",
+      "UnauthRoleName": "amplify-datacollector-cfa-142110-unauthRole",
+      "StackName": "amplify-datacollector-cfa-142110",
+      "StackId": "arn:aws:cloudformation:us-east-2:216407560218:stack/amplify-datacollector-cfa-142110/5a878180-6b14-11eb-a35a-06aab755df7c",
+      "AmplifyAppId": "d3hhyprvvvg1nu"
+    },
+    "categories": {
+      "auth": {
+        "datacollector1ec2816b": {}
+      }
+    }
+  }
+}
