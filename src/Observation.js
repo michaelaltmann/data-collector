@@ -35,7 +35,7 @@ class Observation extends Component {
             return previousList
         }
         let apiName = 'observation';
-        let path = '/items';
+        let path = '/item';
         let init = {
             queryStringParameters: {}
         }
