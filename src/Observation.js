@@ -3,6 +3,7 @@ import { API } from 'aws-amplify'
 import {
     Button,
     Icon,
+    Paper,
     TextField,
 } from '@material-ui/core';
 
@@ -38,15 +39,14 @@ class Observation extends Component {
     }
     handleChange(e) {
         const { name, value } = e.target;
-        const item = JSON.parse(value)
-        this.setState({ ...this.state, item: item, modified: true })
+        this.setState({ ...this.state, item: value, modified: true })
     }
     async handleSubmit() {
         const { item } = this.state;
         const apiName = 'observation';
-        const path = '/item/';
+        const path = '/item';
         let init = {
-            body: item
+            body: JSON.parse(item)
         }
         const response = await API.put(apiName, path, init)
         this.setState({ ...this.state, item: item, modified: false })
@@ -79,35 +79,38 @@ class Observation extends Component {
         }
         return list
     }
-    renderForm() {
-        const { item, modified } = this.state
-        return (
-            <React.Fragment>
-                <TextField
-                    value={JSON.stringify(item)}
-                    name='observation'
-                    label='observation'
-                    onChange={this.handleChange.bind(this)}
-                    fullWidth
-                    rowsMax={10}
-                />
-                <Button
-                    onClick={this.handleSubmit.bind(this)}
-                    style={styles.button}
-                    color="secondary"
-                    disabled={!modified}
-                >
-                    <Icon style={modified ? { color: 'green' } : { color: 'lightGray' }}>check_icon</Icon>
-                </Button>
-            </React.Fragment>
-        )
-    }
     render() {
         return (
             <React.Fragment >
                 { this.renderForm()}
                 { this.renderList()}
             </React.Fragment >
+        )
+    }
+
+
+    renderForm() {
+        const { item } = this.state
+        const modified = true
+        return (
+            <Paper>
+                <TextField
+                    value={item}
+                    name='observation'
+                    label='observation'
+                    onChange={this.handleChange.bind(this)}
+                    fullWidth={true}
+                    multiline={true}
+                    rows={8}
+                    rowsMax={10}
+                />
+                <br></br>
+                <Button
+                    onClick={this.handleSubmit.bind(this)}
+                    variant="outlined"
+                > Save
+                </Button>
+            </Paper >
         )
     }
 
@@ -125,7 +128,7 @@ class Observation extends Component {
                 >
                     {
                         items.map(item => {
-                            return (<div>{JSON.strigify(item)}</div>)
+                            return (<div>{JSON.stringify(item)}</div>)
                         })
                     }
 
