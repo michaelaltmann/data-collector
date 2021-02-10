@@ -34,8 +34,9 @@ class Observation extends Component {
             // Already got everything
             return previousList
         }
+        const studyName = 'image';
         let apiName = 'observation';
-        let path = '/item';
+        let path = '/item/' + studyName;
         let init = {
             queryStringParameters: {}
         }
