@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
 import { API } from 'aws-amplify'
+import {
+    Button,
+    Icon,
+    TextField,
+} from '@material-ui/core';
 
 import { withStyles } from '@material-ui/core/styles';
 import { CircularProgress } from '@material-ui/core'
@@ -14,7 +19,9 @@ class Observation extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            data: {}
+            data: {},
+            observation: {},
+            modified: false
         }
     }
     async componentDidMount() {
@@ -29,15 +36,30 @@ class Observation extends Component {
         const newList = await this.listItems(data)
         this.setState({ ...this.state, data: newList });
     }
+    handleChange(e) {
+        const { name, value } = e.target;
+        const item = JSON.parse(value)
+        this.setState({ ...this.state, item: item, modified: true })
+    }
+    async handleSubmit() {
+        const { item } = this.state;
+        const apiName = 'observation';
+        const path = '/item/';
+        let init = {
+            body: item
+        }
+        const response = await API.put(apiName, path, init)
+        this.setState({ ...this.state, item: item, modified: false })
+    }
     async listItems(previousList) {
         if (previousList && !previousList.LastEvaluatedKey) {
             // Already got everything
             return previousList
         }
         const studyName = 'image';
-        let apiName = 'observation';
-        let path = '/item/' + studyName;
-        let init = {
+        const apiName = 'observation';
+        const path = '/item/' + studyName;
+        const init = {
             queryStringParameters: {}
         }
 
@@ -57,7 +79,39 @@ class Observation extends Component {
         }
         return list
     }
+    renderForm() {
+        const { item, modified } = this.state
+        return (
+            <React.Fragment>
+                <TextField
+                    value={JSON.stringify(item)}
+                    name='observation'
+                    label='observation'
+                    onChange={this.handleChange.bind(this)}
+                    fullWidth
+                    rowsMax={10}
+                />
+                <Button
+                    onClick={this.handleSubmit.bind(this)}
+                    style={styles.button}
+                    color="secondary"
+                    disabled={!modified}
+                >
+                    <Icon style={modified ? { color: 'green' } : { color: 'lightGray' }}>check_icon</Icon>
+                </Button>
+            </React.Fragment>
+        )
+    }
     render() {
+        return (
+            <React.Fragment >
+                { this.renderForm()}
+                { this.renderList()}
+            </React.Fragment >
+        )
+    }
+
+    renderList() {
         const { classes } = this.props
         const { data } = this.state
         if (data && data.items) {

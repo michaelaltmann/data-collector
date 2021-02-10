@@ -87,10 +87,10 @@ app.get(path + hashKeyPath, function (req, res) {
     params.LastEvaluatedKey = JSON.parse(decodeURIComponent(params.LastEvaluatedKey))
   }
 
-  let queryParams = {
+  const queryParams = {
     TableName: tableName,
     KeyConditions: condition,
-    ExclusiveStartKey: arams.LastEvaluatedKey
+    ExclusiveStartKey: params.LastEvaluatedKey
   }
 
   dynamodb.query(queryParams, (err, data) => {
