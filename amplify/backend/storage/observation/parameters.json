@@ -1,5 +1,5 @@
 {
     "tableName": "observation",
-    "partitionKeyName": "study",
+    "partitionKeyName": "id",
     "partitionKeyType": "S"
 }
