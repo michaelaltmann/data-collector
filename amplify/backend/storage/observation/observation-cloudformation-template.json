@@ -11,6 +11,7 @@
         "env": {
             "Type": "String"
         },
+        
         "tableName": {
             "Type": "String"
         }
@@ -30,16 +31,20 @@
             "Type": "AWS::DynamoDB::Table",
             "Properties": {
                 "AttributeDefinitions": [
-                    {
-                        "AttributeName": "id",
-                        "AttributeType": "S"
-                    }
+                  
+                  {
+                      "AttributeName": "study",
+                      "AttributeType": "S"
+                  } 
+                  
                 ],
                 "KeySchema": [
-                    {
-                        "AttributeName": "id",
-                        "KeyType": "HASH"
-                    }
+                  
+                  {
+                    "AttributeName": "study",
+                    "KeyType": "HASH"
+                  } 
+                  
                 ],
                 "BillingMode": "PAY_PER_REQUEST",
                 "StreamSpecification": {
@@ -49,24 +54,26 @@
                     "Fn::If": [
                         "ShouldNotCreateEnvResources",
                         {
-                            "Ref": "tableName"
-                        },
+                           "Ref": "tableName"
+                        }, 
                         {
+
                             "Fn::Join": [
                                 "",
                                 [
-                                    {
-                                        "Ref": "tableName"
-                                    },
-                                    "-",
-                                    {
-                                        "Ref": "env"
-                                    }
+                                  {
+                                    "Ref": "tableName"
+                                  },
+                                  "-",
+                                  {
+                                    "Ref": "env"
+                                  }
                                 ]
                             ]
                         }
                     ]
                 }
+                
             }
         }
     },
@@ -102,6 +109,7 @@
                 "Ref": "partitionKeyType"
             }
         },
+        
         "Region": {
             "Value": {
                 "Ref": "AWS::Region"
