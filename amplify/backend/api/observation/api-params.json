@@ -4,14 +4,7 @@
             "name": "/item",
             "lambdaFunction": "observation",
             "privacy": {
-                "private": true,
-                "auth": [
-                    "/POST",
-                    "/GET",
-                    "/PUT",
-                    "/PATCH",
-                    "/DELETE"
-                ]
+                "open": true
             }
         }
     ],
@@ -23,7 +16,7 @@
         }
     ],
     "privacy": {
-        "auth": 1,
+        "auth": 0,
         "unauth": 0,
         "authRoleName": "amplify-datacollector-cfa-142110-authRole",
         "unAuthRoleName": "amplify-datacollector-cfa-142110-unauthRole"
@@ -38,5 +31,5 @@
             ]
         }
     ],
-    "uuid": "0cc96257"
+    "uuid": "c869b707"
 }
